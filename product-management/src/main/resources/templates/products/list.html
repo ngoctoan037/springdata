@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: head}"></head>
+<body>
+    <nav th:replace="~{fragments/header :: navbar}"></nav>
+    
+    <div class="container mt-4">
+        <h2 th:text="#{product.list.title}">Product List</h2>
+        
+        <!-- Alert Messages -->
+        <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle"></i> <span th:text="#{${successMessage}}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle"></i> <span th:text="#{${errorMessage}}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        
+        <!-- Search and Add Button -->
+        <div class="row mb-3">
+            <div class="col-md-8">
+                <form th:action="@{/products}" method="get" class="d-flex">
+                    <input type="text" name="keyword" th:value="${keyword}" 
+                           class="form-control me-2" 
+                           th:placeholder="#{product.search.placeholder}">
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i class="fas fa-search"></i> <span th:text="#{product.search}">Search</span>
+                    </button>
+                </form>
+            </div>
+            <div class="col-md-4 text-end">
+                <a th:href="@{/products/add}" class="btn btn-success">
+                    <i class="fas fa-plus"></i> <span th:text="#{product.add.new}">Add New Product</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Products Table -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" th:if="${not #lists.isEmpty(products)}">
+                <thead class="table-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th th:text="#{product.name}">Product Name</th>
+                        <th th:text="#{product.description}">Description</th>
+                        <th th:text="#{product.price}">Price</th>
+                        <th th:text="#{product.quantity}">Quantity</th>
+                        <th th:text="#{product.actions}">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.id}">1</td>
+                        <td th:text="${product.name}">Product Name</td>
+                        <td th:text="${product.description}">Description</td>
+                        <td th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}">100.00</td>
+                        <td th:text="${product.quantity}">10</td>
+                        <td>
+                            <a th:href="@{/products/edit/{id}(id=${product.id})}" 
+                               class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i> <span th:text="#{product.edit}">Edit</span>
+                            </a>
+                            <a th:href="@{/products/delete/{id}(id=${product.id})}" 
+                               class="btn btn-sm btn-danger"
+                               th:onclick="|return confirm('#{confirm.delete}');|">
+                                <i class="fas fa-trash"></i> <span th:text="#{product.delete}">Delete</span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- No Products Message -->
+            <div th:if="${#lists.isEmpty(products)}" class="alert alert-info text-center">
+                <i class="fas fa-info-circle"></i> <span th:text="#{no.products}">No products found</span>
+            </div>
+        </div>
+    </div>
+    
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+    <div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>

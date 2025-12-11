@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<head th:replace="~{fragments/header :: head}"></head>
+
+<body>
+    <nav th:replace="~{fragments/header :: navbar}"></nav>
+
+    
+        <div class="container mt-5">
+            <div class="jumbotron text-center bg-light p-5 rounded">
+                <h1 class="display-4" th:text="#{home.title}">Welcome</h1>
+                <p class="lead" th:text="#{home.description}">
+                    Product Management System with Spring Boot
+                </p>
+
+                <hr class="my-4">
+
+                <a class="btn btn-primary btn-lg" th:href="@{/products}" role="button">
+                    <i class="fas fa-box"></i>
+                    <span th:text="#{home.view.products}">View Products</span>
+                </a>
+            </div>
+        </div>
+  
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+    <div th:replace="~{fragments/footer :: scripts}"></div>
+</body>
+</html>
+
+

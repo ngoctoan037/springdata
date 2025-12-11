@@ -1,0 +1,122 @@
+/* ===== Base Layout: Sticky Footer ===== */
+html, body {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Nội dung chiếm toàn bộ chiều cao còn lại */
+.content-wrapper,
+.container {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
+}
+
+/* ===== Custom Styles for Product Management System ===== */
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-brand i {
+    margin-right: 8px;
+}
+
+/* Card Styles */
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Jumbotron Styles */
+.jumbotron {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 10px;
+}
+
+.jumbotron .btn {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+}
+
+/* Table Styles */
+.table {
+    background-color: white;
+}
+
+.table thead {
+    position: sticky;
+    top: 0;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Button Styles */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Alert Styles */
+.alert {
+    border-radius: 8px;
+    border-left: 4px solid;
+}
+
+.alert-success { border-left-color: #28a745; }
+.alert-danger  { border-left-color: #dc3545; }
+.alert-info    { border-left-color: #17a2b8; }
+
+/* Form Styles */
+.form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.is-invalid { border-color: #dc3545; }
+.invalid-feedback { display: block; }
+
+/* Card Header Colors */
+.card-header.bg-success { background-color: #28a745 !important; }
+.card-header.bg-warning { background-color: #ffc107 !important; }
+
+/* Icons */
+.fa-3x { font-size: 3rem; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar-brand { font-size: 1.2rem; }
+    .btn-group-sm .btn {
+        padding: .25rem .5rem;
+        font-size: .875rem;
+    }
+    .table { font-size: .9rem; }
+}
+body.home-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-wrapper {
+    flex: 1;
+}
